@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 
-export function Button({text, font, isBlue, arrow, link, hoverArrow}: {text: string, font: string, isBlue: string, arrow: string, link: string, hoverArrow: string})
+export function Button({text, font, isBlue, arrow, link, hoverArrow}: {text: string, font: string, isBlue: boolean, arrow: string, link: string, hoverArrow: string})
 {
     return(
         <Link href = {link}>

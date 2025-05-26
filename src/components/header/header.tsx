@@ -1,9 +1,11 @@
+'use client'
+
 import Link from "next/link";
 import Image from 'next/image'
 import { Button } from '@/components/lilcoms';
-
-// import { useState } from 'react';
-// import { InputForm } from './form';
+import { useState } from 'react';
+import { InputForm } from '@/components/form';
+import { createUser } from "./actions";
 
 const links = [
     {
@@ -22,31 +24,31 @@ const links = [
 
 function Header()
 {
-    // const [isOpened, setIsOpened] = useState(false);
+    const [isOpened, setIsOpened] = useState(false);
 
-    // function openModal()
-    // {
-    //     setIsOpened(true);
-    //     document.body.style.overflow = "hidden";
-    // }
+    function openModal()
+    {
+        setIsOpened(true);
+        document.body.style.overflow = "hidden";
+    }
 
-    // function closeModal()
-    // {
-    //     setIsOpened(false)
-    //     document.body.style.overflow = "scroll";
-    // }
+    function closeModal()
+    {
+        setIsOpened(false)
+        document.body.style.overflow = "scroll";
+    }
 
-    // const modal = 
-    //     <div className = "fixed top-0 w-[100vw] h-[100vh] flex justify-center items-center bg-[#00000080] z-10">
-    //         <div className = "bg-white rounded-xl p-4 relative">
-    //             <form className = "flex flex-col gap-4 items-center">
-    //                 <InputForm text = "Имя" type = "text" placeText = "Олег"/>
-    //                 <InputForm text = "Номер телефона" type = "text" placeText = "8 800 555 35 35"/>
-    //                 <input className = "px-10 flex items-center transition duration-150 border border-Blue py-2.5 font-Light bg-Blue rounded-md text-white hover:bg-white hover:text-black " type = "submit"/>
-    //             </form>
-    //             <p onClick = {closeModal} className = "cursor-pointer absolute top-0 right-4">x</p>
-    //         </div>
-    //     </div>
+    const modal = 
+        <div className = "fixed top-0 w-[100vw] h-[100vh] flex justify-center items-center bg-[#00000080] z-10">
+            <div className = "bg-white rounded-xl p-4 relative">
+                <form action = {createUser} className = "flex flex-col gap-4 items-center">
+                    <InputForm name = "name" text = "Имя" type = "text" placeText = "Олег" w = ""/>
+                    <InputForm name = "phone" text = "Номер телефона" type = "text" placeText = "8 800 555 35 35" w = ""/>
+                    <input className = "px-10 flex items-center transition duration-150 border border-Blue py-2.5 font-Light bg-Blue rounded-md text-white hover:bg-white hover:text-black " type = "submit"/>
+                </form>
+                <p onClick = {closeModal} className = "cursor-pointer absolute top-0 right-4">x</p>
+            </div>
+        </div>
     
     return(
         <>
@@ -63,13 +65,12 @@ function Header()
                 <nav className = "flex gap-16">
                     {links.map((elem, i) => { return <LinkCustomized text = {elem.text} url = {elem.url} key = {i}/>})}
                 </nav>
-                {/* onClick = {openModal} */}
-                <div >
-                    <Button text = "Запись" font = "Bold" isBlue = "yes" arrow = "" link = "" hoverArrow=""/>
+                <div onClick = {openModal}>
+                    <Button text = "Запись" font = "Bold" isBlue = {true} arrow = "" link = "" hoverArrow=""/>
                 </div>
             </div>
         </header>
-        {/* {isOpened ? modal : ""} */}
+        {isOpened ? modal : ""}
         </>
     );
 }
