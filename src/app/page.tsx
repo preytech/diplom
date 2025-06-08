@@ -3,6 +3,7 @@ import Advantages from '@/components/advantages';
 import Form from "@/components/form";
 
 import { Button, CustomH } from '@/components/lilcoms';
+import Link from "next/link";
 
 export default function Home() {
   return(
@@ -10,12 +11,15 @@ export default function Home() {
         <div className = "flex justify-between container mx-auto py-5 ">
             <div className = "flex flex-col justify-center gap-12">
                 <div className = "font-Black 2xl:text-8xl xl:text-7xl lg:text-6xl flex flex-col gap-7">
+                    <Link href="/test">
+                        <p className="font-Bold text-red-600 text-9xl">ТЕСТ</p>
+                    </Link>
                     <p className = "text-Gray font-Light text-lg">Стоматологические услуги по бюджетным ценам</p>
                     <p>Ваша улыбка -</p>
                     <p className = "text-Blue">наш приоритет</p>
                 </div>
                     <div className = "flex gap-8 font-Light relative items-center">
-                        <Button text = "Каталог услуг" font = "Light" isBlue = {true} link = "/servises" arrow = "" hoverArrow=""/>
+                        <Button text = "Каталог услуг" font = "Light" isBlue = {true} link = "/servises" hoverArrow=""/>
                         <Button text = "Подробнее" font = "Light" arrow = "/media/buttons/mainButtonArrow.svg" link = "/about" hoverArrow="" isBlue = {false}/>
                         <img className = "absolute top-0 right-48" src = "/media/heroPage/blueArrow.svg" alt = ""/>
                         <img className = "absolute top-10 left-24" src = "/media/heroPage/blackArrow.svg" alt = ""/>
