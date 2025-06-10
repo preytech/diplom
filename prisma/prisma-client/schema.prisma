@@ -16,14 +16,66 @@ datasource db {
 }
 
 model User {
-  id       String @id @unique @default(uuid()) @db.Uuid
-  phone    String @unique
+  id       String   @id @unique @default(uuid()) @db.Uuid
+  phone    String   @unique
   name     String
   password String
-  role     Role   @default(USER)
+  role     Role     @default(USER)
+  order    Order[]
+  review   Review[]
 }
 
 enum Role {
   USER
   ADMIN
+}
+
+model Order {
+  id        String   @id @unique @default(uuid()) @db.Uuid
+  serviseID String   @db.Uuid
+  servise   Servise  @relation(fields: [serviseID], references: [id])
+  doctorID  String   @db.Uuid
+  doctor    Doctor   @relation(fields: [doctorID], references: [id])
+  status    Status   @default(VACANT)
+  date      DateTime
+  userID    String   @db.Uuid
+  user      User?    @relation(fields: [userID], references: [id])
+}
+
+enum Status {
+  VACANT
+  OCCUPIED
+  CANCELED
+  ARCHIVED
+}
+
+model Servise {
+  id     String   @id @unique @default(uuid()) @db.Uuid
+  name   String
+  order  Order[]
+  desc   String
+  prices String
+  image  String
+  doctor Doctor[]
+}
+
+model Doctor {
+  id      String    @id @unique @default(uuid()) @db.Uuid
+  name    String
+  desc    String
+  reviews Review[]
+  image   String
+  servise Servise[]
+  order   Order[]
+  rating  Int
+}
+
+model Review {
+  id       String @id @unique @default(uuid()) @db.Uuid
+  userID   String @db.Uuid
+  user     User   @relation(fields: [userID], references: [id])
+  rate     Int
+  doctorID String @db.Uuid
+  doctor   Doctor @relation(fields: [doctorID], references: [id])
+  text     String
 }

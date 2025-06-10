@@ -1,0 +1,61 @@
+/* Import slick carousel styles */
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+
+/* Custom slider styles */
+.slick-slider {
+    margin: 2rem 0;
+}
+
+.slick-dots {
+    bottom: -50px;
+}
+
+.slick-dots li button:before {
+    font-size: 12px;
+    color: #cbd5e0;
+}
+
+.slick-dots li.slick-active button:before {
+    color: #3182ce;
+}
+
+.slick-prev:before,
+.slick-next:before {
+    color: #3182ce;
+    font-size: 20px;
+}
+
+.slick-prev {
+    left: -50px;
+}
+
+.slick-next {
+    right: -50px;
+}
+
+/* Doctor card responsive styles */
+.doctor-card {
+    margin: 0 10px;
+}
+
+@media (max-width: 768px) {
+    .doctor-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .doctor-card img {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+
+    .doctor-info {
+        margin-top: 1rem;
+    }
+
+    .doctor-name {
+        font-size: 2rem;
+    }
+}
