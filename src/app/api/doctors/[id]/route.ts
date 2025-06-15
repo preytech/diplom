@@ -113,33 +113,33 @@ export async function DELETE(
     }
 }
 
-export async function GET(
-    request: NextRequest,
-    { params }: RouteParams
-): Promise<NextResponse> {
-    try {
-        const { id } = params;
+// export async function GET(
+//     request: NextRequest,
+//     { params }: RouteParams
+// ): Promise<NextResponse> {
+//     try {
+//         const { id } = params;
 
-        const doctor = await prisma.doctor.findUnique({
-            where: { id },
-            include: {
-                service: true,
-            },
-        });
+//         const doctor = await prisma.doctor.findUnique({
+//             where: { id },
+//             include: {
+//                 service: true,
+//             },
+//         });
 
-        if (!doctor) {
-            return NextResponse.json(
-                { error: "Врач не найден" },
-                { status: 404 }
-            );
-        }
+//         if (!doctor) {
+//             return NextResponse.json(
+//                 { error: "Врач не найден" },
+//                 { status: 404 }
+//             );
+//         }
 
-        return NextResponse.json(doctor);
-    } catch (error) {
-        console.error("Error fetching doctor:", error);
-        return NextResponse.json(
-            { error: "Ошибка при получении данных врача" },
-            { status: 500 }
-        );
-    }
-}
+//         return NextResponse.json(doctor);
+//     } catch (error) {
+//         console.error("Error fetching doctor:", error);
+//         return NextResponse.json(
+//             { error: "Ошибка при получении данных врача" },
+//             { status: 500 }
+//         );
+//     }
+// }
