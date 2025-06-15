@@ -48,14 +48,14 @@ export const options: NextAuthOptions = {
     callbacks: {
         async jwt({ token, user }) {
             if (user) {
-                console.log("user", user);
+                // console.log("user", user);
                 token.name = user.name;
                 token.role = user.role;
             }
             return token;
         },
         async session({ session, token }) {
-            console.log("token", token);
+            // console.log("token", token);
 
             if (!token.sub || !token.name) return session;
 
@@ -63,7 +63,7 @@ export const options: NextAuthOptions = {
             session.user.name = token.name;
             session.user.role = token.role;
 
-            console.log("session", session);
+            // console.log("session", session);
 
             return session;
         },

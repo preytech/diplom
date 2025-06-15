@@ -32,8 +32,8 @@ enum Role {
 
 model Order {
   id        String   @id @unique @default(uuid()) @db.Uuid
-  serviseID String   @db.Uuid
-  servise   Servise  @relation(fields: [serviseID], references: [id])
+  serviceID String   @db.Uuid
+  service   Service  @relation(fields: [serviceID], references: [id])
   doctorID  String   @db.Uuid
   doctor    Doctor   @relation(fields: [doctorID], references: [id])
   status    Status   @default(VACANT)
@@ -49,14 +49,22 @@ enum Status {
   ARCHIVED
 }
 
-model Servise {
-  id     String   @id @unique @default(uuid()) @db.Uuid
-  name   String
-  order  Order[]
-  desc   String
-  prices String
-  image  String
-  doctor Doctor[]
+model Service {
+  id         String    @id @unique @default(uuid()) @db.Uuid
+  name       String
+  order      Order[]
+  desc       String
+  prices     String
+  image      String
+  doctor     Doctor[]
+  categoryID String?   @db.Uuid
+  category   Category? @relation(fields: [categoryID], references: [id])
+}
+
+model Category {
+  id      String    @id @unique @default(uuid()) @db.Uuid
+  name    String
+  service Service[]
 }
 
 model Doctor {
@@ -65,9 +73,10 @@ model Doctor {
   desc    String
   reviews Review[]
   image   String
-  servise Servise[]
+  service Service[]
   order   Order[]
   rating  Int
+  showed  Boolean
 }
 
 model Review {

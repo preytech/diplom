@@ -67,7 +67,7 @@ function Header() {
         if (result?.error) {
             setError("Логин или пароль введён неправильно");
         } else {
-            router.push("/cabinet");
+            router.push("/");
             router.refresh();
             closeModal();
         }
@@ -201,7 +201,7 @@ function Header() {
                                 text="Личный кабинет"
                                 font="Bold"
                                 isBlue={true}
-                                link="/cabinet"
+                                link="/"
                                 hoverArrow=""
                             />
                         ) : (
