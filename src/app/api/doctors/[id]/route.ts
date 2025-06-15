@@ -4,6 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
 import { writeFile } from "fs/promises";
+import { Prisma } from "../../../../../prisma/prisma-client";
 
 interface RouteParams {
     params: {
@@ -33,11 +34,9 @@ export async function PUT(
             );
         }
 
-        const services: { id: string }[] = JSON.parse(servicesInput);
-
-        const serviceConnections = services.map((service) => ({
-            id: service.id,
-        }));
+        const serviceIds: string[] = JSON.parse(servicesInput);
+        const connectServices: Prisma.ServiceWhereUniqueInput[] =
+            serviceIds.map((id) => ({ id }));
 
         // Создаем врача с связанными услугами
         const doctor = await prisma.doctor.update({
@@ -49,7 +48,7 @@ export async function PUT(
                 rating: 0,
                 showed,
                 service: {
-                    connect: serviceConnections,
+                    connect: connectServices,
                 },
             },
             include: {
