@@ -3,6 +3,7 @@ import prisma from "../../../../db";
 import fs from "fs";
 import path from "path";
 import { writeFile } from "fs/promises";
+import { Prisma } from "../../../../prisma/prisma-client";
 
 export async function POST(request: NextRequest) {
     try {
@@ -22,10 +23,9 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        const services: { id: string }[] = JSON.parse(servicesInput);
-
-        const serviceConnections = services.map((id) => ({ id }));
-
+        const serviceIds: string[] = JSON.parse(servicesInput);
+        const connectServices: Prisma.ServiceWhereUniqueInput[] =
+            serviceIds.map((id) => ({ id }));
         // Создаем врача с связанными услугами
         const doctor = await prisma.doctor.create({
             data: {
@@ -35,7 +35,7 @@ export async function POST(request: NextRequest) {
                 rating: 0,
                 showed,
                 service: {
-                    connect: serviceConnections,
+                    connect: connectServices,
                 },
             },
             include: {
