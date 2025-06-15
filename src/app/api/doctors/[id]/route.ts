@@ -35,7 +35,9 @@ export async function PUT(
 
         const services: { id: string }[] = JSON.parse(servicesInput);
 
-        const serviceConnections = services.map((id) => ({ id }));
+        const serviceConnections = services.map((service) => ({
+            id: service.id,
+        }));
 
         // Создаем врача с связанными услугами
         const doctor = await prisma.doctor.update({
