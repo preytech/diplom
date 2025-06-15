@@ -39,7 +39,7 @@ export async function PUT(
 
         // Создаем врача с связанными услугами
         const doctor = await prisma.doctor.update({
-            where: { id: params.id },
+            where: { id: (await params).id },
             data: {
                 name,
                 desc,
@@ -81,10 +81,10 @@ export async function PUT(
 
 export async function DELETE(
     request: NextRequest,
-    { params }: RouteParams
+    { params }: { params: Promise<{ id: string }> }
 ): Promise<NextResponse> {
     try {
-        const { id } = params;
+        const id = (await params).id;
 
         // Проверка существования врача
         const existingDoctor = await prisma.doctor.findUnique({

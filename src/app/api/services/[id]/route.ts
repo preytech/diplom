@@ -6,11 +6,11 @@ import { writeFile } from "fs/promises";
 
 export async function GET(
     request: NextRequest,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     try {
         const service = await prisma.service.findUnique({
-            where: { id: params.id },
+            where: { id: (await params).id },
         });
 
         if (!service) {
@@ -32,7 +32,7 @@ export async function GET(
 
 export async function PUT(
     request: NextRequest,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     try {
         // const body = await request.json();
@@ -52,7 +52,7 @@ export async function PUT(
         }
 
         const service = await prisma.service.update({
-            where: { id: params.id },
+            where: { id: (await params).id },
             data: {
                 name,
                 desc,
@@ -87,7 +87,7 @@ export async function PUT(
 
 export async function DELETE(
     request: NextRequest,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     try {
         // Проверяем, используется ли услуга врачами
@@ -95,7 +95,7 @@ export async function DELETE(
             where: {
                 service: {
                     some: {
-                        id: params.id,
+                        id: (await params).id,
                     },
                 },
             },
@@ -109,7 +109,7 @@ export async function DELETE(
         }
 
         await prisma.service.delete({
-            where: { id: params.id },
+            where: { id: (await params).id },
         });
 
         return NextResponse.json({ message: "Service deleted successfully" });
