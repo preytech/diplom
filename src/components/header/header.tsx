@@ -201,7 +201,7 @@ function Header() {
                                 text="Личный кабинет"
                                 font="Bold"
                                 isBlue={true}
-                                link="/"
+                                link="/cabinet/main"
                                 hoverArrow=""
                             />
                         ) : (
