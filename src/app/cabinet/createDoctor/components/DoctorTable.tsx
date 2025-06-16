@@ -4,14 +4,6 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import DoctorForm from "./DoctorForm";
 
-interface Service {
-    id: string;
-    name: string;
-    desc: string;
-    prices: string;
-    image: string;
-}
-
 interface Doctor {
     id: string;
     name: string;
@@ -20,6 +12,15 @@ interface Doctor {
     rating: number;
     showed: boolean;
     service: Service[];
+}
+
+interface Service {
+    id: string;
+    name: string;
+    desc: string;
+    prices: string;
+    image: string | null;
+    categoryID?: string | null;
 }
 
 interface DoctorTableProps {

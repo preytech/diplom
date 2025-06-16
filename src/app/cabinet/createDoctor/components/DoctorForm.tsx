@@ -8,7 +8,8 @@ interface Service {
     name: string;
     desc: string;
     prices: string;
-    image: string;
+    image: string | null;
+    categoryID?: string | null;
 }
 
 interface Doctor {
