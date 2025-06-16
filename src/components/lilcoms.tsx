@@ -17,7 +17,7 @@ export function Button({
     isBlue: boolean;
     arrow?: string;
     link: string;
-    hoverArrow: string;
+    hoverArrow?: string;
     buttontype?: "button" | "submit" | "reset";
     smth?: (e?: React.MouseEvent) => void;
 }) {

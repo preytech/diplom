@@ -9,8 +9,8 @@ interface ServiceFormProps {
         name: string;
         desc: string;
         prices: string;
-        image: string;
-        categoryId?: string;
+        image?: string | undefined;
+        categoryId?: string | null;
     };
     onClose?: () => void;
 }
@@ -28,7 +28,7 @@ export default function ServiceForm({ service, onClose }: ServiceFormProps) {
         categoryId: service?.categoryId || "",
     });
     const [image, setImage] = useState<File | null>(null);
-    const [categories, setCategories] = useState<Category[]>([]);
+    const [category, setCategories] = useState<Category[]>([]);
     const [newCategoryName, setNewCategoryName] = useState("");
     const [showNewCategoryInput, setShowNewCategoryInput] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -39,7 +39,7 @@ export default function ServiceForm({ service, onClose }: ServiceFormProps) {
         const fetchCategories = async () => {
             try {
                 const response = await fetch(
-                    `${process.env.NEXT_PUBLIC_API_URL}/api/categories`
+                    `${process.env.NEXT_PUBLIC_API_URL}/api/category`
                 );
                 if (response.ok) {
                     const data = await response.json();
@@ -58,31 +58,36 @@ export default function ServiceForm({ service, onClose }: ServiceFormProps) {
         setIsSubmitting(true);
 
         try {
+            let categoryId = formData.categoryId;
+
+            // Если создаем новую категорию
             if (showNewCategoryInput && newCategoryName) {
                 const categoryResponse = await fetch(
-                    `${process.env.NEXT_PUBLIC_API_URL}/api/categories`,
+                    `${process.env.NEXT_PUBLIC_API_URL}/api/category`,
                     {
                         method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
                         body: JSON.stringify({ name: newCategoryName }),
                     }
                 );
 
-                if (categoryResponse.ok) {
-                    const newCategory = await categoryResponse.json();
-                    formData.categoryId = newCategory.id;
-                } else {
+                if (!categoryResponse.ok) {
                     throw new Error("Failed to create category");
                 }
+
+                const newCategory = await categoryResponse.json();
+                categoryId = newCategory.id; // Сохраняем новый ID категории
+
+                // Обновляем список категорий
+                setCategories((prev) => [...prev, newCategory]);
             }
+
+            // Создаем FormData для услуги
             const formDataToSend = new FormData();
             formDataToSend.append("name", formData.name);
             formDataToSend.append("desc", formData.desc);
             formDataToSend.append("prices", formData.prices);
-            formDataToSend.append("categoryId", formData.categoryId);
-            console.log(image);
+            formDataToSend.append("categoryId", formData.categoryId); // Используем актуальный ID
+
             if (image) {
                 formDataToSend.append("image", image, image.name);
             }
@@ -97,19 +102,22 @@ export default function ServiceForm({ service, onClose }: ServiceFormProps) {
                 body: formDataToSend,
             });
 
-            if (response.ok) {
-                setFormData({ name: "", desc: "", prices: "", categoryId: "" });
-                setImage(null);
-                router.refresh();
-                if (onClose) onClose();
-            } else {
+            if (!response.ok) {
                 const errorText = await response.text();
-                console.error("Server Error:", errorText);
-                alert(errorText);
+                throw new Error(errorText);
             }
+
+            // Сброс формы после успешного сохранения
+            setFormData({ name: "", desc: "", prices: "", categoryId: "" });
+            setImage(null);
+            setNewCategoryName("");
+            setShowNewCategoryInput(false);
+
+            router.refresh();
+            if (onClose) onClose();
         } catch (error) {
             console.error("Error:", error);
-            alert("Ошибка при сохранении услуги");
+            alert(error || "Ошибка при сохранении услуги");
         } finally {
             setIsSubmitting(false);
         }
@@ -208,7 +216,7 @@ export default function ServiceForm({ service, onClose }: ServiceFormProps) {
                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     >
                         <option value="">Выберите категорию</option>
-                        {categories.map((category) => (
+                        {category.map((category) => (
                             <option key={category.id} value={category.id}>
                                 {category.name}
                             </option>

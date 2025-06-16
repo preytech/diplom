@@ -3862,7 +3862,7 @@ export namespace Prisma {
     name: string
     desc: string
     prices: string
-    image: string
+    image: string | null
     categoryID: string | null
     _count: ServiceCountAggregateOutputType | null
     _min: ServiceMinAggregateOutputType | null
@@ -3951,7 +3951,7 @@ export namespace Prisma {
       name: string
       desc: string
       prices: string
-      image: string
+      image: string | null
       categoryID: string | null
     }, ExtArgs["result"]["service"]>
     composites: {}
@@ -6072,7 +6072,7 @@ export namespace Prisma {
     id: string
     name: string
     desc: string
-    image: string
+    image: string | null
     rating: number
     showed: boolean
     _count: DoctorCountAggregateOutputType | null
@@ -6157,7 +6157,7 @@ export namespace Prisma {
       id: string
       name: string
       desc: string
-      image: string
+      image: string | null
       rating: number
       showed: boolean
     }, ExtArgs["result"]["doctor"]>
@@ -8505,7 +8505,7 @@ export namespace Prisma {
     name?: StringFilter<"Service"> | string
     desc?: StringFilter<"Service"> | string
     prices?: StringFilter<"Service"> | string
-    image?: StringFilter<"Service"> | string
+    image?: StringNullableFilter<"Service"> | string | null
     categoryID?: UuidNullableFilter<"Service"> | string | null
     order?: OrderListRelationFilter
     doctor?: DoctorListRelationFilter
@@ -8517,7 +8517,7 @@ export namespace Prisma {
     name?: SortOrder
     desc?: SortOrder
     prices?: SortOrder
-    image?: SortOrder
+    image?: SortOrderInput | SortOrder
     categoryID?: SortOrderInput | SortOrder
     order?: OrderOrderByRelationAggregateInput
     doctor?: DoctorOrderByRelationAggregateInput
@@ -8532,7 +8532,7 @@ export namespace Prisma {
     name?: StringFilter<"Service"> | string
     desc?: StringFilter<"Service"> | string
     prices?: StringFilter<"Service"> | string
-    image?: StringFilter<"Service"> | string
+    image?: StringNullableFilter<"Service"> | string | null
     categoryID?: UuidNullableFilter<"Service"> | string | null
     order?: OrderListRelationFilter
     doctor?: DoctorListRelationFilter
@@ -8544,7 +8544,7 @@ export namespace Prisma {
     name?: SortOrder
     desc?: SortOrder
     prices?: SortOrder
-    image?: SortOrder
+    image?: SortOrderInput | SortOrder
     categoryID?: SortOrderInput | SortOrder
     _count?: ServiceCountOrderByAggregateInput
     _max?: ServiceMaxOrderByAggregateInput
@@ -8559,7 +8559,7 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"Service"> | string
     desc?: StringWithAggregatesFilter<"Service"> | string
     prices?: StringWithAggregatesFilter<"Service"> | string
-    image?: StringWithAggregatesFilter<"Service"> | string
+    image?: StringNullableWithAggregatesFilter<"Service"> | string | null
     categoryID?: UuidNullableWithAggregatesFilter<"Service"> | string | null
   }
 
@@ -8610,7 +8610,7 @@ export namespace Prisma {
     id?: UuidFilter<"Doctor"> | string
     name?: StringFilter<"Doctor"> | string
     desc?: StringFilter<"Doctor"> | string
-    image?: StringFilter<"Doctor"> | string
+    image?: StringNullableFilter<"Doctor"> | string | null
     rating?: IntFilter<"Doctor"> | number
     showed?: BoolFilter<"Doctor"> | boolean
     reviews?: ReviewListRelationFilter
@@ -8622,7 +8622,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     desc?: SortOrder
-    image?: SortOrder
+    image?: SortOrderInput | SortOrder
     rating?: SortOrder
     showed?: SortOrder
     reviews?: ReviewOrderByRelationAggregateInput
@@ -8637,7 +8637,7 @@ export namespace Prisma {
     NOT?: DoctorWhereInput | DoctorWhereInput[]
     name?: StringFilter<"Doctor"> | string
     desc?: StringFilter<"Doctor"> | string
-    image?: StringFilter<"Doctor"> | string
+    image?: StringNullableFilter<"Doctor"> | string | null
     rating?: IntFilter<"Doctor"> | number
     showed?: BoolFilter<"Doctor"> | boolean
     reviews?: ReviewListRelationFilter
@@ -8649,7 +8649,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     desc?: SortOrder
-    image?: SortOrder
+    image?: SortOrderInput | SortOrder
     rating?: SortOrder
     showed?: SortOrder
     _count?: DoctorCountOrderByAggregateInput
@@ -8666,7 +8666,7 @@ export namespace Prisma {
     id?: UuidWithAggregatesFilter<"Doctor"> | string
     name?: StringWithAggregatesFilter<"Doctor"> | string
     desc?: StringWithAggregatesFilter<"Doctor"> | string
-    image?: StringWithAggregatesFilter<"Doctor"> | string
+    image?: StringNullableWithAggregatesFilter<"Doctor"> | string | null
     rating?: IntWithAggregatesFilter<"Doctor"> | number
     showed?: BoolWithAggregatesFilter<"Doctor"> | boolean
   }
@@ -8860,7 +8860,7 @@ export namespace Prisma {
     name: string
     desc: string
     prices: string
-    image: string
+    image?: string | null
     order?: OrderCreateNestedManyWithoutServiceInput
     doctor?: DoctorCreateNestedManyWithoutServiceInput
     category?: CategoryCreateNestedOneWithoutServiceInput
@@ -8871,7 +8871,7 @@ export namespace Prisma {
     name: string
     desc: string
     prices: string
-    image: string
+    image?: string | null
     categoryID?: string | null
     order?: OrderUncheckedCreateNestedManyWithoutServiceInput
     doctor?: DoctorUncheckedCreateNestedManyWithoutServiceInput
@@ -8882,7 +8882,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     desc?: StringFieldUpdateOperationsInput | string
     prices?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     order?: OrderUpdateManyWithoutServiceNestedInput
     doctor?: DoctorUpdateManyWithoutServiceNestedInput
     category?: CategoryUpdateOneWithoutServiceNestedInput
@@ -8893,7 +8893,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     desc?: StringFieldUpdateOperationsInput | string
     prices?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     categoryID?: NullableStringFieldUpdateOperationsInput | string | null
     order?: OrderUncheckedUpdateManyWithoutServiceNestedInput
     doctor?: DoctorUncheckedUpdateManyWithoutServiceNestedInput
@@ -8904,7 +8904,7 @@ export namespace Prisma {
     name: string
     desc: string
     prices: string
-    image: string
+    image?: string | null
     categoryID?: string | null
   }
 
@@ -8913,7 +8913,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     desc?: StringFieldUpdateOperationsInput | string
     prices?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ServiceUncheckedUpdateManyInput = {
@@ -8921,7 +8921,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     desc?: StringFieldUpdateOperationsInput | string
     prices?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     categoryID?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -8968,7 +8968,7 @@ export namespace Prisma {
     id?: string
     name: string
     desc: string
-    image: string
+    image?: string | null
     rating: number
     showed: boolean
     reviews?: ReviewCreateNestedManyWithoutDoctorInput
@@ -8980,7 +8980,7 @@ export namespace Prisma {
     id?: string
     name: string
     desc: string
-    image: string
+    image?: string | null
     rating: number
     showed: boolean
     reviews?: ReviewUncheckedCreateNestedManyWithoutDoctorInput
@@ -8992,7 +8992,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     desc?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: IntFieldUpdateOperationsInput | number
     showed?: BoolFieldUpdateOperationsInput | boolean
     reviews?: ReviewUpdateManyWithoutDoctorNestedInput
@@ -9004,7 +9004,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     desc?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: IntFieldUpdateOperationsInput | number
     showed?: BoolFieldUpdateOperationsInput | boolean
     reviews?: ReviewUncheckedUpdateManyWithoutDoctorNestedInput
@@ -9016,7 +9016,7 @@ export namespace Prisma {
     id?: string
     name: string
     desc: string
-    image: string
+    image?: string | null
     rating: number
     showed: boolean
   }
@@ -9025,7 +9025,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     desc?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: IntFieldUpdateOperationsInput | number
     showed?: BoolFieldUpdateOperationsInput | boolean
   }
@@ -9034,7 +9034,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     desc?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: IntFieldUpdateOperationsInput | number
     showed?: BoolFieldUpdateOperationsInput | boolean
   }
@@ -9298,6 +9298,21 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type UuidNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -9355,6 +9370,24 @@ export namespace Prisma {
     prices?: SortOrder
     image?: SortOrder
     categoryID?: SortOrder
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type UuidNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -9685,6 +9718,10 @@ export namespace Prisma {
     connect?: DoctorWhereUniqueInput | DoctorWhereUniqueInput[]
   }
 
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
   export type OrderUpdateManyWithoutServiceNestedInput = {
     create?: XOR<OrderCreateWithoutServiceInput, OrderUncheckedCreateWithoutServiceInput> | OrderCreateWithoutServiceInput[] | OrderUncheckedCreateWithoutServiceInput[]
     connectOrCreate?: OrderCreateOrConnectWithoutServiceInput | OrderCreateOrConnectWithoutServiceInput[]
@@ -9720,10 +9757,6 @@ export namespace Prisma {
     delete?: CategoryWhereInput | boolean
     connect?: CategoryWhereUniqueInput
     update?: XOR<XOR<CategoryUpdateToOneWithWhereWithoutServiceInput, CategoryUpdateWithoutServiceInput>, CategoryUncheckedUpdateWithoutServiceInput>
-  }
-
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
   }
 
   export type OrderUncheckedUpdateManyWithoutServiceNestedInput = {
@@ -10083,6 +10116,20 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type NestedUuidNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -10094,7 +10141,7 @@ export namespace Prisma {
     not?: NestedUuidNullableFilter<$PrismaModel> | string | null
   }
 
-  export type NestedUuidNullableWithAggregatesFilter<$PrismaModel = never> = {
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
     notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -10102,7 +10149,10 @@ export namespace Prisma {
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
     gte?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedUuidNullableWithAggregatesFilter<$PrismaModel> | string | null
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
@@ -10119,7 +10169,7 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
-  export type NestedStringNullableFilter<$PrismaModel = never> = {
+  export type NestedUuidNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
     notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -10127,10 +10177,10 @@ export namespace Prisma {
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
     gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+    not?: NestedUuidNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type NestedBoolFilter<$PrismaModel = never> = {
@@ -10283,7 +10333,7 @@ export namespace Prisma {
     name: string
     desc: string
     prices: string
-    image: string
+    image?: string | null
     doctor?: DoctorCreateNestedManyWithoutServiceInput
     category?: CategoryCreateNestedOneWithoutServiceInput
   }
@@ -10293,7 +10343,7 @@ export namespace Prisma {
     name: string
     desc: string
     prices: string
-    image: string
+    image?: string | null
     categoryID?: string | null
     doctor?: DoctorUncheckedCreateNestedManyWithoutServiceInput
   }
@@ -10307,7 +10357,7 @@ export namespace Prisma {
     id?: string
     name: string
     desc: string
-    image: string
+    image?: string | null
     rating: number
     showed: boolean
     reviews?: ReviewCreateNestedManyWithoutDoctorInput
@@ -10318,7 +10368,7 @@ export namespace Prisma {
     id?: string
     name: string
     desc: string
-    image: string
+    image?: string | null
     rating: number
     showed: boolean
     reviews?: ReviewUncheckedCreateNestedManyWithoutDoctorInput
@@ -10369,7 +10419,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     desc?: StringFieldUpdateOperationsInput | string
     prices?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     doctor?: DoctorUpdateManyWithoutServiceNestedInput
     category?: CategoryUpdateOneWithoutServiceNestedInput
   }
@@ -10379,7 +10429,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     desc?: StringFieldUpdateOperationsInput | string
     prices?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     categoryID?: NullableStringFieldUpdateOperationsInput | string | null
     doctor?: DoctorUncheckedUpdateManyWithoutServiceNestedInput
   }
@@ -10399,7 +10449,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     desc?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: IntFieldUpdateOperationsInput | number
     showed?: BoolFieldUpdateOperationsInput | boolean
     reviews?: ReviewUpdateManyWithoutDoctorNestedInput
@@ -10410,7 +10460,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     desc?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: IntFieldUpdateOperationsInput | number
     showed?: BoolFieldUpdateOperationsInput | boolean
     reviews?: ReviewUncheckedUpdateManyWithoutDoctorNestedInput
@@ -10476,7 +10526,7 @@ export namespace Prisma {
     id?: string
     name: string
     desc: string
-    image: string
+    image?: string | null
     rating: number
     showed: boolean
     reviews?: ReviewCreateNestedManyWithoutDoctorInput
@@ -10487,7 +10537,7 @@ export namespace Prisma {
     id?: string
     name: string
     desc: string
-    image: string
+    image?: string | null
     rating: number
     showed: boolean
     reviews?: ReviewUncheckedCreateNestedManyWithoutDoctorInput
@@ -10553,7 +10603,7 @@ export namespace Prisma {
     id?: UuidFilter<"Doctor"> | string
     name?: StringFilter<"Doctor"> | string
     desc?: StringFilter<"Doctor"> | string
-    image?: StringFilter<"Doctor"> | string
+    image?: StringNullableFilter<"Doctor"> | string | null
     rating?: IntFilter<"Doctor"> | number
     showed?: BoolFilter<"Doctor"> | boolean
   }
@@ -10584,7 +10634,7 @@ export namespace Prisma {
     name: string
     desc: string
     prices: string
-    image: string
+    image?: string | null
     order?: OrderCreateNestedManyWithoutServiceInput
     doctor?: DoctorCreateNestedManyWithoutServiceInput
   }
@@ -10594,7 +10644,7 @@ export namespace Prisma {
     name: string
     desc: string
     prices: string
-    image: string
+    image?: string | null
     order?: OrderUncheckedCreateNestedManyWithoutServiceInput
     doctor?: DoctorUncheckedCreateNestedManyWithoutServiceInput
   }
@@ -10633,7 +10683,7 @@ export namespace Prisma {
     name?: StringFilter<"Service"> | string
     desc?: StringFilter<"Service"> | string
     prices?: StringFilter<"Service"> | string
-    image?: StringFilter<"Service"> | string
+    image?: StringNullableFilter<"Service"> | string | null
     categoryID?: UuidNullableFilter<"Service"> | string | null
   }
 
@@ -10666,7 +10716,7 @@ export namespace Prisma {
     name: string
     desc: string
     prices: string
-    image: string
+    image?: string | null
     order?: OrderCreateNestedManyWithoutServiceInput
     category?: CategoryCreateNestedOneWithoutServiceInput
   }
@@ -10676,7 +10726,7 @@ export namespace Prisma {
     name: string
     desc: string
     prices: string
-    image: string
+    image?: string | null
     categoryID?: string | null
     order?: OrderUncheckedCreateNestedManyWithoutServiceInput
   }
@@ -10787,7 +10837,7 @@ export namespace Prisma {
     id?: string
     name: string
     desc: string
-    image: string
+    image?: string | null
     rating: number
     showed: boolean
     service?: ServiceCreateNestedManyWithoutDoctorInput
@@ -10798,7 +10848,7 @@ export namespace Prisma {
     id?: string
     name: string
     desc: string
-    image: string
+    image?: string | null
     rating: number
     showed: boolean
     service?: ServiceUncheckedCreateNestedManyWithoutDoctorInput
@@ -10854,7 +10904,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     desc?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: IntFieldUpdateOperationsInput | number
     showed?: BoolFieldUpdateOperationsInput | boolean
     service?: ServiceUpdateManyWithoutDoctorNestedInput
@@ -10865,7 +10915,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     desc?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: IntFieldUpdateOperationsInput | number
     showed?: BoolFieldUpdateOperationsInput | boolean
     service?: ServiceUncheckedUpdateManyWithoutDoctorNestedInput
@@ -10968,7 +11018,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     desc?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: IntFieldUpdateOperationsInput | number
     showed?: BoolFieldUpdateOperationsInput | boolean
     reviews?: ReviewUpdateManyWithoutDoctorNestedInput
@@ -10979,7 +11029,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     desc?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: IntFieldUpdateOperationsInput | number
     showed?: BoolFieldUpdateOperationsInput | boolean
     reviews?: ReviewUncheckedUpdateManyWithoutDoctorNestedInput
@@ -10990,7 +11040,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     desc?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: IntFieldUpdateOperationsInput | number
     showed?: BoolFieldUpdateOperationsInput | boolean
   }
@@ -11000,7 +11050,7 @@ export namespace Prisma {
     name: string
     desc: string
     prices: string
-    image: string
+    image?: string | null
   }
 
   export type ServiceUpdateWithoutCategoryInput = {
@@ -11008,7 +11058,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     desc?: StringFieldUpdateOperationsInput | string
     prices?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     order?: OrderUpdateManyWithoutServiceNestedInput
     doctor?: DoctorUpdateManyWithoutServiceNestedInput
   }
@@ -11018,7 +11068,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     desc?: StringFieldUpdateOperationsInput | string
     prices?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     order?: OrderUncheckedUpdateManyWithoutServiceNestedInput
     doctor?: DoctorUncheckedUpdateManyWithoutServiceNestedInput
   }
@@ -11028,7 +11078,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     desc?: StringFieldUpdateOperationsInput | string
     prices?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ReviewCreateManyDoctorInput = {
@@ -11072,7 +11122,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     desc?: StringFieldUpdateOperationsInput | string
     prices?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     order?: OrderUpdateManyWithoutServiceNestedInput
     category?: CategoryUpdateOneWithoutServiceNestedInput
   }
@@ -11082,7 +11132,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     desc?: StringFieldUpdateOperationsInput | string
     prices?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     categoryID?: NullableStringFieldUpdateOperationsInput | string | null
     order?: OrderUncheckedUpdateManyWithoutServiceNestedInput
   }
@@ -11092,7 +11142,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     desc?: StringFieldUpdateOperationsInput | string
     prices?: StringFieldUpdateOperationsInput | string
-    image?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     categoryID?: NullableStringFieldUpdateOperationsInput | string | null
   }
 

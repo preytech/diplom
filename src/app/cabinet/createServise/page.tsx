@@ -7,13 +7,17 @@ export default async function ServicesPage() {
         orderBy: { name: "asc" },
     });
 
+    const categories = await prisma.category.findMany({
+        orderBy: { name: "asc" },
+    });
+
     return (
         <div className="p-6">
             <h1 className="font-bold text-black text-2xl mb-6">
                 Управление услугами
             </h1>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 gap-8">
                 <div>
                     <h2 className="font-semibold text-lg mb-4">
                         Добавить новую услугу
@@ -23,7 +27,7 @@ export default async function ServicesPage() {
 
                 <div>
                     <h2 className="font-semibold text-lg mb-4">Список услуг</h2>
-                    <ServiceTable services={services} />
+                    <ServiceTable services={services} categories={categories} />
                 </div>
             </div>
         </div>

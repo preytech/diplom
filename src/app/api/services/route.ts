@@ -26,7 +26,7 @@ export async function POST(request: Request) {
         const name = formData.get("name")?.toString();
         const desc = formData.get("desc")?.toString();
         const prices = formData.get("prices")?.toString();
-        const categoryID = formData.get("categoryID")?.toString();
+        const categoryID = formData.get("categoryId")?.toString();
         const image = formData.get("image") as File | null;
 
         if (!name || !prices || !desc) {

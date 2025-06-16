@@ -41,8 +41,10 @@ export async function PUT(
         const name = formData.get("name")?.toString();
         const desc = formData.get("desc")?.toString();
         const prices = formData.get("prices")?.toString();
-        const categoryID = formData.get("categoryID")?.toString();
+        const categoryID = formData.get("categoryId")?.toString();
         const image = formData.get("image") as File | null;
+
+        console.log(categoryID);
 
         if (!name || !desc || !prices) {
             return NextResponse.json(
@@ -51,15 +53,31 @@ export async function PUT(
             );
         }
 
+        // Подготовка данных для обновления
+        const updateData: {
+            name: string;
+            desc: string;
+            prices: string;
+            categoryId?: string;
+            image?: string;
+        } = {
+            name,
+            desc,
+            prices,
+        };
+
+        // Добавляем categoryId только если он есть
+        if (categoryID) {
+            updateData.categoryId = categoryID;
+        } else {
+            // Если нужно удалить привязку к категории
+            updateData.categoryId = undefined;
+        }
+
+        // Обновляем сервис
         const service = await prisma.service.update({
             where: { id: (await params).id },
-            data: {
-                name,
-                desc,
-                prices,
-                image: "",
-                categoryID,
-            },
+            data: updateData,
         });
 
         if (image && image.size > 0) {
