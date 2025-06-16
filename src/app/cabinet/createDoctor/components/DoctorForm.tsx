@@ -13,10 +13,11 @@ interface Service {
 }
 
 interface Doctor {
-    id?: string;
+    id: string;
     name: string;
     desc: string;
-    image: string;
+    image: string | null;
+    rating: number;
     showed: boolean;
     service: Service[];
 }

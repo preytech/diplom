@@ -8,14 +8,15 @@ interface Service {
     name: string;
     desc: string;
     prices: string;
-    image: string;
+    image: string | null;
+    categoryID?: string | null;
 }
 
 interface Doctor {
     id: string;
     name: string;
     desc: string;
-    image: string;
+    image: string | null;
     rating: number;
     showed: boolean;
     service: Service[];

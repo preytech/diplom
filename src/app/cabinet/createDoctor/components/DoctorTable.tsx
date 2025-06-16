@@ -8,7 +8,7 @@ interface Doctor {
     id: string;
     name: string;
     desc: string;
-    image: string;
+    image: string | null;
     rating: number;
     showed: boolean;
     service: Service[];
