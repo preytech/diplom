@@ -34,12 +34,9 @@ export default function ArchivePage() {
     useEffect(() => {
         const fetchArchivedOrders = async () => {
             try {
-                const response = await fetch(
-                    `${process.env.NEXT_PUBLIC_API_URL}/api/orders/archive`,
-                    {
-                        credentials: "include",
-                    }
-                );
+                const response = await fetch("/api/orders/archive", {
+                    credentials: "include",
+                });
 
                 if (!response.ok) {
                     throw new Error("Failed to fetch archived orders");

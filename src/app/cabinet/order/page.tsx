@@ -37,12 +37,9 @@ export default function UserAppointments() {
     useEffect(() => {
         const fetchUserOrders = async () => {
             try {
-                const response = await fetch(
-                    `${process.env.NEXT_PUBLIC_API_URL}/api/user/order`,
-                    {
-                        credentials: "include",
-                    }
-                );
+                const response = await fetch("/api/user/order", {
+                    credentials: "include",
+                });
 
                 if (response.ok) {
                     const ordersData = await response.json();
@@ -88,13 +85,10 @@ export default function UserAppointments() {
         if (!confirm("Вы уверены, что хотите отменить эту запись?")) return;
 
         try {
-            const response = await fetch(
-                `${process.env.NEXT_PUBLIC_API_URL}/api/user/order/${orderId}/cancel`,
-                {
-                    method: "POST",
-                    credentials: "include",
-                }
-            );
+            const response = await fetch("/api/user/order/${orderId}/cancel", {
+                method: "POST",
+                credentials: "include",
+            });
 
             if (!response.ok) {
                 throw new Error("Failed to cancel order");

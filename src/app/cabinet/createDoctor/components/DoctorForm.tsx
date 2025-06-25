@@ -53,9 +53,7 @@ export default function DoctorForm({
     useEffect(() => {
         const fetchServices = async () => {
             try {
-                const response = await fetch(
-                    `${process.env.NEXT_PUBLIC_API_URL}/api/services`
-                );
+                const response = await fetch("/api/services");
                 if (response.ok) {
                     const data = await response.json();
                     setServices(data);
@@ -113,8 +111,8 @@ export default function DoctorForm({
             // };
 
             const url = editingDoctor
-                ? `${process.env.NEXT_PUBLIC_API_URL}/api/doctors/${editingDoctor.id}`
-                : `${process.env.NEXT_PUBLIC_API_URL}/api/doctors`;
+                ? `/api/doctors/${editingDoctor.id}`
+                : "/api/doctors";
             const method = editingDoctor ? "PUT" : "POST";
             const response = await fetch(url, {
                 method,

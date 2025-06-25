@@ -81,9 +81,9 @@ export default function OrderManagement() {
         const fetchData = async () => {
             try {
                 const [ordersRes, servicesRes, doctorsRes] = await Promise.all([
-                    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/orders`),
-                    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/services`),
-                    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/doctors`),
+                    fetch("/api/orders"),
+                    fetch("/api/services"),
+                    fetch("/api/doctors"),
                 ]);
 
                 if (ordersRes.ok) {
@@ -147,16 +147,13 @@ export default function OrderManagement() {
         }
 
         try {
-            const response = await fetch(
-                `${process.env.NEXT_PUBLIC_API_URL}/api/orders/batch`,
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(formData),
-                }
-            );
+            const response = await fetch("/api/orders/batch", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            });
 
             if (!response.ok) {
                 throw new Error("Failed to create orders");
@@ -206,16 +203,13 @@ export default function OrderManagement() {
                 filter.doctorID = selectedDoctor;
             }
 
-            const response = await fetch(
-                `${process.env.NEXT_PUBLIC_API_URL}/api/orders/cancel-filtered`,
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({ filter }),
-                }
-            );
+            const response = await fetch("/api/orders/cancel-filtered", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ filter }),
+            });
 
             if (!response.ok) {
                 throw new Error("Failed to cancel filtered day orders");
@@ -244,16 +238,13 @@ export default function OrderManagement() {
         if (!confirm("Вы уверены, что хотите отменить эту запись?")) return;
 
         try {
-            const response = await fetch(
-                `${process.env.NEXT_PUBLIC_API_URL}/api/orders/${orderId}`,
-                {
-                    method: "PATCH",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({ status: "CANCELED" }),
-                }
-            );
+            const response = await fetch("/api/orders/${orderId}", {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ status: "CANCELED" }),
+            });
 
             if (!response.ok) {
                 throw new Error("Failed to cancel order");
@@ -295,12 +286,9 @@ export default function OrderManagement() {
             return;
 
         try {
-            const response = await fetch(
-                `${process.env.NEXT_PUBLIC_API_URL}/api/orders/${orderId}`,
-                {
-                    method: "DELETE",
-                }
-            );
+            const response = await fetch(`/api/orders/${orderId}`, {
+                method: "DELETE",
+            });
 
             if (!response.ok) {
                 throw new Error("Failed to delete order");

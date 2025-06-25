@@ -38,9 +38,7 @@ export default function ServiceForm({ service, onClose }: ServiceFormProps) {
         // Fetch existing categories
         const fetchCategories = async () => {
             try {
-                const response = await fetch(
-                    `${process.env.NEXT_PUBLIC_API_URL}/api/category`
-                );
+                const response = await fetch("/api/category");
                 if (response.ok) {
                     const data = await response.json();
                     setCategories(data);

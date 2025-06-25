@@ -17,15 +17,12 @@ export default function ReviewsList({ initialReviews }: ReviewsListProps) {
 
     const handleApproveReview = async (reviewId: string) => {
         try {
-            const response = await fetch(
-                `${process.env.NEXT_PUBLIC_API_URL}/api/reviews/${reviewId}`,
-                {
-                    method: "PATCH",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                }
-            );
+            const response = await fetch(`/api/reviews/${reviewId}`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
 
             if (response.ok) {
                 setReviews((prevReviews) =>
