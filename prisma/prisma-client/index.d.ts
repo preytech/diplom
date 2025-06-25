@@ -2757,7 +2757,7 @@ export namespace Prisma {
     doctorID: string
     status: $Enums.Status
     date: Date
-    userID: string
+    userID: string | null
     _count: OrderCountAggregateOutputType | null
     _min: OrderMinAggregateOutputType | null
     _max: OrderMaxAggregateOutputType | null
@@ -2852,7 +2852,7 @@ export namespace Prisma {
       doctorID: string
       status: $Enums.Status
       date: Date
-      userID: string
+      userID: string | null
     }, ExtArgs["result"]["order"]>
     composites: {}
   }
@@ -7096,6 +7096,7 @@ export namespace Prisma {
     rate: number | null
     doctorID: string | null
     text: string | null
+    isApproved: boolean | null
   }
 
   export type ReviewMaxAggregateOutputType = {
@@ -7104,6 +7105,7 @@ export namespace Prisma {
     rate: number | null
     doctorID: string | null
     text: string | null
+    isApproved: boolean | null
   }
 
   export type ReviewCountAggregateOutputType = {
@@ -7112,6 +7114,7 @@ export namespace Prisma {
     rate: number
     doctorID: number
     text: number
+    isApproved: number
     _all: number
   }
 
@@ -7130,6 +7133,7 @@ export namespace Prisma {
     rate?: true
     doctorID?: true
     text?: true
+    isApproved?: true
   }
 
   export type ReviewMaxAggregateInputType = {
@@ -7138,6 +7142,7 @@ export namespace Prisma {
     rate?: true
     doctorID?: true
     text?: true
+    isApproved?: true
   }
 
   export type ReviewCountAggregateInputType = {
@@ -7146,6 +7151,7 @@ export namespace Prisma {
     rate?: true
     doctorID?: true
     text?: true
+    isApproved?: true
     _all?: true
   }
 
@@ -7241,6 +7247,7 @@ export namespace Prisma {
     rate: number
     doctorID: string
     text: string
+    isApproved: boolean
     _count: ReviewCountAggregateOutputType | null
     _avg: ReviewAvgAggregateOutputType | null
     _sum: ReviewSumAggregateOutputType | null
@@ -7268,6 +7275,7 @@ export namespace Prisma {
     rate?: boolean
     doctorID?: boolean
     text?: boolean
+    isApproved?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     doctor?: boolean | DoctorDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["review"]>
@@ -7278,6 +7286,7 @@ export namespace Prisma {
     rate?: boolean
     doctorID?: boolean
     text?: boolean
+    isApproved?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     doctor?: boolean | DoctorDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["review"]>
@@ -7288,6 +7297,7 @@ export namespace Prisma {
     rate?: boolean
     doctorID?: boolean
     text?: boolean
+    isApproved?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     doctor?: boolean | DoctorDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["review"]>
@@ -7298,9 +7308,10 @@ export namespace Prisma {
     rate?: boolean
     doctorID?: boolean
     text?: boolean
+    isApproved?: boolean
   }
 
-  export type ReviewOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userID" | "rate" | "doctorID" | "text", ExtArgs["result"]["review"]>
+  export type ReviewOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userID" | "rate" | "doctorID" | "text" | "isApproved", ExtArgs["result"]["review"]>
   export type ReviewInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     doctor?: boolean | DoctorDefaultArgs<ExtArgs>
@@ -7326,6 +7337,7 @@ export namespace Prisma {
       rate: number
       doctorID: string
       text: string
+      isApproved: boolean
     }, ExtArgs["result"]["review"]>
     composites: {}
   }
@@ -7756,6 +7768,7 @@ export namespace Prisma {
     readonly rate: FieldRef<"Review", 'Int'>
     readonly doctorID: FieldRef<"Review", 'String'>
     readonly text: FieldRef<"Review", 'String'>
+    readonly isApproved: FieldRef<"Review", 'Boolean'>
   }
     
 
@@ -8244,7 +8257,8 @@ export namespace Prisma {
     userID: 'userID',
     rate: 'rate',
     doctorID: 'doctorID',
-    text: 'text'
+    text: 'text',
+    isApproved: 'isApproved'
   };
 
   export type ReviewScalarFieldEnum = (typeof ReviewScalarFieldEnum)[keyof typeof ReviewScalarFieldEnum]
@@ -8440,7 +8454,7 @@ export namespace Prisma {
     doctorID?: UuidFilter<"Order"> | string
     status?: EnumStatusFilter<"Order"> | $Enums.Status
     date?: DateTimeFilter<"Order"> | Date | string
-    userID?: UuidFilter<"Order"> | string
+    userID?: UuidNullableFilter<"Order"> | string | null
     service?: XOR<ServiceScalarRelationFilter, ServiceWhereInput>
     doctor?: XOR<DoctorScalarRelationFilter, DoctorWhereInput>
     user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
@@ -8452,7 +8466,7 @@ export namespace Prisma {
     doctorID?: SortOrder
     status?: SortOrder
     date?: SortOrder
-    userID?: SortOrder
+    userID?: SortOrderInput | SortOrder
     service?: ServiceOrderByWithRelationInput
     doctor?: DoctorOrderByWithRelationInput
     user?: UserOrderByWithRelationInput
@@ -8467,7 +8481,7 @@ export namespace Prisma {
     doctorID?: UuidFilter<"Order"> | string
     status?: EnumStatusFilter<"Order"> | $Enums.Status
     date?: DateTimeFilter<"Order"> | Date | string
-    userID?: UuidFilter<"Order"> | string
+    userID?: UuidNullableFilter<"Order"> | string | null
     service?: XOR<ServiceScalarRelationFilter, ServiceWhereInput>
     doctor?: XOR<DoctorScalarRelationFilter, DoctorWhereInput>
     user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
@@ -8479,7 +8493,7 @@ export namespace Prisma {
     doctorID?: SortOrder
     status?: SortOrder
     date?: SortOrder
-    userID?: SortOrder
+    userID?: SortOrderInput | SortOrder
     _count?: OrderCountOrderByAggregateInput
     _max?: OrderMaxOrderByAggregateInput
     _min?: OrderMinOrderByAggregateInput
@@ -8494,7 +8508,7 @@ export namespace Prisma {
     doctorID?: UuidWithAggregatesFilter<"Order"> | string
     status?: EnumStatusWithAggregatesFilter<"Order"> | $Enums.Status
     date?: DateTimeWithAggregatesFilter<"Order"> | Date | string
-    userID?: UuidWithAggregatesFilter<"Order"> | string
+    userID?: UuidNullableWithAggregatesFilter<"Order"> | string | null
   }
 
   export type ServiceWhereInput = {
@@ -8680,6 +8694,7 @@ export namespace Prisma {
     rate?: IntFilter<"Review"> | number
     doctorID?: UuidFilter<"Review"> | string
     text?: StringFilter<"Review"> | string
+    isApproved?: BoolFilter<"Review"> | boolean
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     doctor?: XOR<DoctorScalarRelationFilter, DoctorWhereInput>
   }
@@ -8690,6 +8705,7 @@ export namespace Prisma {
     rate?: SortOrder
     doctorID?: SortOrder
     text?: SortOrder
+    isApproved?: SortOrder
     user?: UserOrderByWithRelationInput
     doctor?: DoctorOrderByWithRelationInput
   }
@@ -8703,6 +8719,7 @@ export namespace Prisma {
     rate?: IntFilter<"Review"> | number
     doctorID?: UuidFilter<"Review"> | string
     text?: StringFilter<"Review"> | string
+    isApproved?: BoolFilter<"Review"> | boolean
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     doctor?: XOR<DoctorScalarRelationFilter, DoctorWhereInput>
   }, "id" | "id">
@@ -8713,6 +8730,7 @@ export namespace Prisma {
     rate?: SortOrder
     doctorID?: SortOrder
     text?: SortOrder
+    isApproved?: SortOrder
     _count?: ReviewCountOrderByAggregateInput
     _avg?: ReviewAvgOrderByAggregateInput
     _max?: ReviewMaxOrderByAggregateInput
@@ -8729,6 +8747,7 @@ export namespace Prisma {
     rate?: IntWithAggregatesFilter<"Review"> | number
     doctorID?: UuidWithAggregatesFilter<"Review"> | string
     text?: StringWithAggregatesFilter<"Review"> | string
+    isApproved?: BoolWithAggregatesFilter<"Review"> | boolean
   }
 
   export type UserCreateInput = {
@@ -8810,7 +8829,7 @@ export namespace Prisma {
     doctorID: string
     status?: $Enums.Status
     date: Date | string
-    userID: string
+    userID?: string | null
   }
 
   export type OrderUpdateInput = {
@@ -8828,7 +8847,7 @@ export namespace Prisma {
     doctorID?: StringFieldUpdateOperationsInput | string
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    userID?: StringFieldUpdateOperationsInput | string
+    userID?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type OrderCreateManyInput = {
@@ -8837,7 +8856,7 @@ export namespace Prisma {
     doctorID: string
     status?: $Enums.Status
     date: Date | string
-    userID: string
+    userID?: string | null
   }
 
   export type OrderUpdateManyMutationInput = {
@@ -8852,7 +8871,7 @@ export namespace Prisma {
     doctorID?: StringFieldUpdateOperationsInput | string
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    userID?: StringFieldUpdateOperationsInput | string
+    userID?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ServiceCreateInput = {
@@ -9043,6 +9062,7 @@ export namespace Prisma {
     id?: string
     rate: number
     text: string
+    isApproved?: boolean
     user: UserCreateNestedOneWithoutReviewInput
     doctor: DoctorCreateNestedOneWithoutReviewsInput
   }
@@ -9053,12 +9073,14 @@ export namespace Prisma {
     rate: number
     doctorID: string
     text: string
+    isApproved?: boolean
   }
 
   export type ReviewUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     rate?: IntFieldUpdateOperationsInput | number
     text?: StringFieldUpdateOperationsInput | string
+    isApproved?: BoolFieldUpdateOperationsInput | boolean
     user?: UserUpdateOneRequiredWithoutReviewNestedInput
     doctor?: DoctorUpdateOneRequiredWithoutReviewsNestedInput
   }
@@ -9069,6 +9091,7 @@ export namespace Prisma {
     rate?: IntFieldUpdateOperationsInput | number
     doctorID?: StringFieldUpdateOperationsInput | string
     text?: StringFieldUpdateOperationsInput | string
+    isApproved?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ReviewCreateManyInput = {
@@ -9077,12 +9100,14 @@ export namespace Prisma {
     rate: number
     doctorID: string
     text: string
+    isApproved?: boolean
   }
 
   export type ReviewUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     rate?: IntFieldUpdateOperationsInput | number
     text?: StringFieldUpdateOperationsInput | string
+    isApproved?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ReviewUncheckedUpdateManyInput = {
@@ -9091,6 +9116,7 @@ export namespace Prisma {
     rate?: IntFieldUpdateOperationsInput | number
     doctorID?: StringFieldUpdateOperationsInput | string
     text?: StringFieldUpdateOperationsInput | string
+    isApproved?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type UuidFilter<$PrismaModel = never> = {
@@ -9232,6 +9258,18 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type UuidNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedUuidNullableFilter<$PrismaModel> | string | null
+  }
+
   export type ServiceScalarRelationFilter = {
     is?: ServiceWhereInput
     isNot?: ServiceWhereInput
@@ -9245,6 +9283,11 @@ export namespace Prisma {
   export type UserNullableScalarRelationFilter = {
     is?: UserWhereInput | null
     isNot?: UserWhereInput | null
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
   }
 
   export type OrderCountOrderByAggregateInput = {
@@ -9298,6 +9341,21 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type UuidNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedUuidNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
   export type StringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -9313,18 +9371,6 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
-  export type UuidNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedUuidNullableFilter<$PrismaModel> | string | null
-  }
-
   export type DoctorListRelationFilter = {
     every?: DoctorWhereInput
     some?: DoctorWhereInput
@@ -9334,11 +9380,6 @@ export namespace Prisma {
   export type CategoryNullableScalarRelationFilter = {
     is?: CategoryWhereInput | null
     isNot?: CategoryWhereInput | null
-  }
-
-  export type SortOrderInput = {
-    sort: SortOrder
-    nulls?: NullsOrder
   }
 
   export type DoctorOrderByRelationAggregateInput = {
@@ -9385,21 +9426,6 @@ export namespace Prisma {
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     mode?: QueryMode
     not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
-  }
-
-  export type UuidNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedUuidNullableWithAggregatesFilter<$PrismaModel> | string | null
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
@@ -9516,6 +9542,7 @@ export namespace Prisma {
     rate?: SortOrder
     doctorID?: SortOrder
     text?: SortOrder
+    isApproved?: SortOrder
   }
 
   export type ReviewAvgOrderByAggregateInput = {
@@ -9528,6 +9555,7 @@ export namespace Prisma {
     rate?: SortOrder
     doctorID?: SortOrder
     text?: SortOrder
+    isApproved?: SortOrder
   }
 
   export type ReviewMinOrderByAggregateInput = {
@@ -9536,6 +9564,7 @@ export namespace Prisma {
     rate?: SortOrder
     doctorID?: SortOrder
     text?: SortOrder
+    isApproved?: SortOrder
   }
 
   export type ReviewSumOrderByAggregateInput = {
@@ -9686,6 +9715,10 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutOrderInput, UserUpdateWithoutOrderInput>, UserUncheckedUpdateWithoutOrderInput>
   }
 
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
   export type OrderCreateNestedManyWithoutServiceInput = {
     create?: XOR<OrderCreateWithoutServiceInput, OrderUncheckedCreateWithoutServiceInput> | OrderCreateWithoutServiceInput[] | OrderUncheckedCreateWithoutServiceInput[]
     connectOrCreate?: OrderCreateOrConnectWithoutServiceInput | OrderCreateOrConnectWithoutServiceInput[]
@@ -9716,10 +9749,6 @@ export namespace Prisma {
     create?: XOR<DoctorCreateWithoutServiceInput, DoctorUncheckedCreateWithoutServiceInput> | DoctorCreateWithoutServiceInput[] | DoctorUncheckedCreateWithoutServiceInput[]
     connectOrCreate?: DoctorCreateOrConnectWithoutServiceInput | DoctorCreateOrConnectWithoutServiceInput[]
     connect?: DoctorWhereUniqueInput | DoctorWhereUniqueInput[]
-  }
-
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
   }
 
   export type OrderUpdateManyWithoutServiceNestedInput = {
@@ -10092,6 +10121,17 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type NestedUuidNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedUuidNullableFilter<$PrismaModel> | string | null
+  }
+
   export type NestedEnumStatusWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>
     in?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
@@ -10116,7 +10156,7 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type NestedStringNullableFilter<$PrismaModel = never> = {
+  export type NestedUuidNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
     notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -10124,35 +10164,7 @@ export namespace Prisma {
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
     gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
-  export type NestedUuidNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedUuidNullableFilter<$PrismaModel> | string | null
-  }
-
-  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    not?: NestedUuidNullableWithAggregatesFilter<$PrismaModel> | string | null
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
@@ -10169,7 +10181,7 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
-  export type NestedUuidNullableWithAggregatesFilter<$PrismaModel = never> = {
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
     notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -10177,7 +10189,24 @@ export namespace Prisma {
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
     gte?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedUuidNullableWithAggregatesFilter<$PrismaModel> | string | null
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
@@ -10253,6 +10282,7 @@ export namespace Prisma {
     id?: string
     rate: number
     text: string
+    isApproved?: boolean
     doctor: DoctorCreateNestedOneWithoutReviewsInput
   }
 
@@ -10261,6 +10291,7 @@ export namespace Prisma {
     rate: number
     doctorID: string
     text: string
+    isApproved?: boolean
   }
 
   export type ReviewCreateOrConnectWithoutUserInput = {
@@ -10298,7 +10329,7 @@ export namespace Prisma {
     doctorID?: UuidFilter<"Order"> | string
     status?: EnumStatusFilter<"Order"> | $Enums.Status
     date?: DateTimeFilter<"Order"> | Date | string
-    userID?: UuidFilter<"Order"> | string
+    userID?: UuidNullableFilter<"Order"> | string | null
   }
 
   export type ReviewUpsertWithWhereUniqueWithoutUserInput = {
@@ -10326,6 +10357,7 @@ export namespace Prisma {
     rate?: IntFilter<"Review"> | number
     doctorID?: UuidFilter<"Review"> | string
     text?: StringFilter<"Review"> | string
+    isApproved?: BoolFilter<"Review"> | boolean
   }
 
   export type ServiceCreateWithoutOrderInput = {
@@ -10509,7 +10541,7 @@ export namespace Prisma {
     doctorID: string
     status?: $Enums.Status
     date: Date | string
-    userID: string
+    userID?: string | null
   }
 
   export type OrderCreateOrConnectWithoutServiceInput = {
@@ -10691,6 +10723,7 @@ export namespace Prisma {
     id?: string
     rate: number
     text: string
+    isApproved?: boolean
     user: UserCreateNestedOneWithoutReviewInput
   }
 
@@ -10699,6 +10732,7 @@ export namespace Prisma {
     userID: string
     rate: number
     text: string
+    isApproved?: boolean
   }
 
   export type ReviewCreateOrConnectWithoutDoctorInput = {
@@ -10749,7 +10783,7 @@ export namespace Prisma {
     serviceID: string
     status?: $Enums.Status
     date: Date | string
-    userID: string
+    userID?: string | null
   }
 
   export type OrderCreateOrConnectWithoutDoctorInput = {
@@ -10935,6 +10969,7 @@ export namespace Prisma {
     rate: number
     doctorID: string
     text: string
+    isApproved?: boolean
   }
 
   export type OrderUpdateWithoutUserInput = {
@@ -10965,6 +11000,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     rate?: IntFieldUpdateOperationsInput | number
     text?: StringFieldUpdateOperationsInput | string
+    isApproved?: BoolFieldUpdateOperationsInput | boolean
     doctor?: DoctorUpdateOneRequiredWithoutReviewsNestedInput
   }
 
@@ -10973,6 +11009,7 @@ export namespace Prisma {
     rate?: IntFieldUpdateOperationsInput | number
     doctorID?: StringFieldUpdateOperationsInput | string
     text?: StringFieldUpdateOperationsInput | string
+    isApproved?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ReviewUncheckedUpdateManyWithoutUserInput = {
@@ -10980,6 +11017,7 @@ export namespace Prisma {
     rate?: IntFieldUpdateOperationsInput | number
     doctorID?: StringFieldUpdateOperationsInput | string
     text?: StringFieldUpdateOperationsInput | string
+    isApproved?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type OrderCreateManyServiceInput = {
@@ -10987,7 +11025,7 @@ export namespace Prisma {
     doctorID: string
     status?: $Enums.Status
     date: Date | string
-    userID: string
+    userID?: string | null
   }
 
   export type OrderUpdateWithoutServiceInput = {
@@ -11003,7 +11041,7 @@ export namespace Prisma {
     doctorID?: StringFieldUpdateOperationsInput | string
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    userID?: StringFieldUpdateOperationsInput | string
+    userID?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type OrderUncheckedUpdateManyWithoutServiceInput = {
@@ -11011,7 +11049,7 @@ export namespace Prisma {
     doctorID?: StringFieldUpdateOperationsInput | string
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    userID?: StringFieldUpdateOperationsInput | string
+    userID?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type DoctorUpdateWithoutServiceInput = {
@@ -11086,6 +11124,7 @@ export namespace Prisma {
     userID: string
     rate: number
     text: string
+    isApproved?: boolean
   }
 
   export type OrderCreateManyDoctorInput = {
@@ -11093,13 +11132,14 @@ export namespace Prisma {
     serviceID: string
     status?: $Enums.Status
     date: Date | string
-    userID: string
+    userID?: string | null
   }
 
   export type ReviewUpdateWithoutDoctorInput = {
     id?: StringFieldUpdateOperationsInput | string
     rate?: IntFieldUpdateOperationsInput | number
     text?: StringFieldUpdateOperationsInput | string
+    isApproved?: BoolFieldUpdateOperationsInput | boolean
     user?: UserUpdateOneRequiredWithoutReviewNestedInput
   }
 
@@ -11108,6 +11148,7 @@ export namespace Prisma {
     userID?: StringFieldUpdateOperationsInput | string
     rate?: IntFieldUpdateOperationsInput | number
     text?: StringFieldUpdateOperationsInput | string
+    isApproved?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ReviewUncheckedUpdateManyWithoutDoctorInput = {
@@ -11115,6 +11156,7 @@ export namespace Prisma {
     userID?: StringFieldUpdateOperationsInput | string
     rate?: IntFieldUpdateOperationsInput | number
     text?: StringFieldUpdateOperationsInput | string
+    isApproved?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ServiceUpdateWithoutDoctorInput = {
@@ -11159,7 +11201,7 @@ export namespace Prisma {
     serviceID?: StringFieldUpdateOperationsInput | string
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    userID?: StringFieldUpdateOperationsInput | string
+    userID?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type OrderUncheckedUpdateManyWithoutDoctorInput = {
@@ -11167,7 +11209,7 @@ export namespace Prisma {
     serviceID?: StringFieldUpdateOperationsInput | string
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    userID?: StringFieldUpdateOperationsInput | string
+    userID?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
 

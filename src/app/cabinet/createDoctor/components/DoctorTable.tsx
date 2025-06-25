@@ -97,6 +97,9 @@ export default function DoctorTable({ doctors }: DoctorTableProps) {
                             ФИО
                         </th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b">
+                            Фото
+                        </th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b">
                             Описание
                         </th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b">
@@ -122,6 +125,17 @@ export default function DoctorTable({ doctors }: DoctorTableProps) {
                                 </td>
                                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 border-b">
                                     {doctor.name}
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 border-b">
+                                    <img
+                                        src={`/doctors/${doctor.id}.webp`}
+                                        alt={doctor.name}
+                                        className="w-16 h-16 object-cover rounded"
+                                        onError={(e) => {
+                                            e.currentTarget.src =
+                                                "/placeholder-image.jpg";
+                                        }}
+                                    />
                                 </td>
                                 <td className="px-6 py-4 text-sm text-gray-900 border-b max-w-xs">
                                     <div

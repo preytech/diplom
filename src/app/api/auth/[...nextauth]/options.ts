@@ -4,7 +4,7 @@ import bcrypt from "bcryptjs";
 import { User } from "../../../../../prisma/prisma-client";
 import Credentials from "next-auth/providers/credentials";
 
-export const options: NextAuthOptions = {
+export const authOptions: NextAuthOptions = {
     providers: [
         Credentials({
             name: "Аккаунт",

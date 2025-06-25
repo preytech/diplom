@@ -1,18 +1,3 @@
-// import prisma from "../../../db";
-// import Services from "./components/servisesList";
-
-// const services = await prisma.service.findMany({
-//     orderBy: { name: "asc" },
-// });
-
-// const categories = await prisma.category.findMany({
-//     orderBy: { name: "asc" },
-// });
-
-// export default function Services() {
-//     return <Services services={services} categories={categories} />;
-// }
-
 import prisma from "../../../db";
 import Services from "./components/servisesList";
 

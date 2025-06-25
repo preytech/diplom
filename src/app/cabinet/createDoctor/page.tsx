@@ -3,25 +3,6 @@ import prisma from "../../../../db";
 import DoctorTable from "./components/DoctorTable";
 import DoctorForm from "./components/DoctorForm";
 
-interface Service {
-    id: string;
-    name: string;
-    desc: string;
-    prices: string;
-    image: string | null;
-    categoryID?: string | null;
-}
-
-interface Doctor {
-    id: string;
-    name: string;
-    desc: string;
-    image: string | null;
-    rating: number;
-    showed: boolean;
-    service: Service[];
-}
-
 export default async function DoctorsPage() {
     const doctors = await prisma.doctor.findMany({
         orderBy: { name: "asc" },

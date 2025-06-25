@@ -38,7 +38,7 @@ model Order {
   doctor        Doctor      @relation(fields: [doctorID], references: [id])
   status        Status      @default(VACANT)
   date          DateTime
-  userID        String      @db.Uuid
+  userID        String?      @db.Uuid
   user          User?       @relation(fields: [userID], references: [id])
 }
 
@@ -87,4 +87,5 @@ model Review {
   doctorID      String       @db.Uuid
   doctor        Doctor       @relation(fields: [doctorID], references: [id])
   text          String
+  isApproved    Boolean      @default(false)
 }

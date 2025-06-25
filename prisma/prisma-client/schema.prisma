@@ -38,7 +38,7 @@ model Order {
   doctor    Doctor   @relation(fields: [doctorID], references: [id])
   status    Status   @default(VACANT)
   date      DateTime
-  userID    String   @db.Uuid
+  userID    String?  @db.Uuid
   user      User?    @relation(fields: [userID], references: [id])
 }
 
@@ -80,11 +80,12 @@ model Doctor {
 }
 
 model Review {
-  id       String @id @unique @default(uuid()) @db.Uuid
-  userID   String @db.Uuid
-  user     User   @relation(fields: [userID], references: [id])
-  rate     Int
-  doctorID String @db.Uuid
-  doctor   Doctor @relation(fields: [doctorID], references: [id])
-  text     String
+  id         String  @id @unique @default(uuid()) @db.Uuid
+  userID     String  @db.Uuid
+  user       User    @relation(fields: [userID], references: [id])
+  rate       Int
+  doctorID   String  @db.Uuid
+  doctor     Doctor  @relation(fields: [doctorID], references: [id])
+  text       String
+  isApproved Boolean @default(false)
 }

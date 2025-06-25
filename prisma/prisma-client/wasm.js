@@ -165,7 +165,8 @@ exports.Prisma.ReviewScalarFieldEnum = {
   userID: 'userID',
   rate: 'rate',
   doctorID: 'doctorID',
-  text: 'text'
+  text: 'text',
+  isApproved: 'isApproved'
 };
 
 exports.Prisma.SortOrder = {

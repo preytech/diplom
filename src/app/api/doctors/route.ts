@@ -4,6 +4,7 @@ import fs from "fs";
 import path from "path";
 import { writeFile } from "fs/promises";
 import { Prisma } from "../../../../prisma/prisma-client";
+import { NextApiRequest, NextApiResponse } from "next";
 
 export async function POST(request: NextRequest) {
     try {
@@ -62,6 +63,23 @@ export async function POST(request: NextRequest) {
         console.error("Ошибка при создании врача:", error);
         return NextResponse.json(
             { error: "Ошибка при создании врача" },
+            { status: 500 }
+        );
+    }
+}
+
+export async function GET(request: NextRequest) {
+    try {
+        const doctors = await prisma.doctor.findMany({
+            include: {
+                service: true,
+            },
+        });
+        return NextResponse.json(doctors);
+    } catch (error) {
+        console.error("Ошибка при получении врачей:", error);
+        return NextResponse.json(
+            { error: "Ошибка при получении врачей" },
             { status: 500 }
         );
     }
