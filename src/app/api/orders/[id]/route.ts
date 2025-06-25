@@ -5,11 +5,11 @@ import { getServerSession } from "next-auth";
 
 export async function PATCH(
     request: NextRequest,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     try {
         const session = await getServerSession(authOptions);
-        const orderId = params.id;
+        const orderId = (await params).id;
         const { status } = await request.json();
 
         if (!session?.user?.id) {
